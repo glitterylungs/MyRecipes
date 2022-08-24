@@ -39,9 +39,9 @@ struct CategoriesView: View {
             }
             .padding()
             .navigationTitle("MyRecipes")
-            // Add search bar
+            // Add search bar, placement --> jest zawsze widoczny(nie tylko po scrollingu)
             // TO DO
-            .searchable(text: $query, prompt: "Find a recipe")
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Find a recipe")
             // Passing text from search bar to the function
             // TO DO --> I have to create new searching function in new observable object (??)
             .onChange(of: query) { newValue in
