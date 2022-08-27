@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		343F13C1143E72D94ADC35AA /* Pods_MyRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B63BBBC9C625E08C7EF36B /* Pods_MyRecipes.framework */; };
-		4F75230628B84DF100C255AB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75230528B84DF100C255AB /* Category.swift */; };
 		4F75230828B84E0100C255AB /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75230728B84E0100C255AB /* Recipe.swift */; };
 		4FC1CA6B28B6C9B8006C4566 /* MyRecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1CA6A28B6C9B8006C4566 /* MyRecipesApp.swift */; };
 		4FC1CA6D28B6C9B8006C4566 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1CA6C28B6C9B8006C4566 /* CategoriesView.swift */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		11B63BBBC9C625E08C7EF36B /* Pods_MyRecipes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyRecipes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F75230528B84DF100C255AB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4F75230728B84E0100C255AB /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		4FC1CA6728B6C9B8006C4566 /* MyRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC1CA6A28B6C9B8006C4566 /* MyRecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesApp.swift; sourceTree = "<group>"; };
@@ -54,7 +52,6 @@
 		4F75230428B84DCD00C255AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F75230528B84DF100C255AB /* Category.swift */,
 				4F75230728B84E0100C255AB /* Recipe.swift */,
 			);
 			path = Model;
@@ -241,7 +238,6 @@
 				4FC1CA6D28B6C9B8006C4566 /* CategoriesView.swift in Sources */,
 				4FC1CA7F28B6D55A006C4566 /* CategoriesViewModel.swift in Sources */,
 				4FC1CA6B28B6C9B8006C4566 /* MyRecipesApp.swift in Sources */,
-				4F75230628B84DF100C255AB /* Category.swift in Sources */,
 				4F75230828B84E0100C255AB /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
