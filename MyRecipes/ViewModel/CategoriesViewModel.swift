@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CategoriesView {
+extension MenuView {
     @MainActor class ViewModel: ObservableObject {
 
     }

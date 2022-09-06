@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-struct CategoriesView: View {
+struct MenuView: View {
     
     @StateObject private var viewModel = ViewModel()
     
-    //Data testowa
-    private var data: [Int] = Array(1...20)
-    private let colors: [Color] = [.red, .blue, .yellow, .green]
-    
     //Jeśli nie będzie miejsca to będzie tylko jedna kolumna
     private let adaptiveColumns = [GridItem(.adaptive(minimum: 170))]
+    
+    //TEST
+    private var data: [Int] = Array(1...20)
     
     //TO DO
     @State private var query: String = ""
@@ -26,19 +25,20 @@ struct CategoriesView: View {
             ScrollView {
                 LazyVGrid(columns: adaptiveColumns, spacing: 20) {
                     ForEach(data, id: \.self) { number in
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 170, height: 170)
-                                .foregroundColor(colors[number%4])
-                                .cornerRadius(25)
-                            Text("\(number)")
-                    }
-                        
+                        RecipeBlock()
                     }
                 }
             }
             .padding()
             .navigationTitle("MyRecipes")
+            .toolbar(content: {
+                Button {
+                  //  <#code#>
+                } label: {
+                    Image(systemName: "plus")
+                }
+
+            })
             // Add search bar, placement --> jest zawsze widoczny(nie tylko po scrollingu)
             // TO DO
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Find a recipe")
@@ -57,6 +57,6 @@ struct CategoriesView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView()
+        MenuView()
     }
 }
