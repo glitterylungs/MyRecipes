@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
     
     @StateObject private var viewModel = ViewModel()
+    @State var showAddView = false
     
     //Jeśli nie będzie miejsca to będzie tylko jedna kolumna
     private let adaptiveColumns = [GridItem(.adaptive(minimum: 170))]
@@ -33,9 +34,9 @@ struct MenuView: View {
             .navigationTitle("MyRecipes")
             .toolbar(content: {
                 Button {
-                  //  <#code#>
+                    showAddView.toggle()
                 } label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "plus").foregroundColor(.black)
                 }
 
             })
@@ -50,6 +51,9 @@ struct MenuView: View {
             
             //  NavigationLink(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) { /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Navigate")/*@END_MENU_TOKEN@*/ }
         }.navigationViewStyle(.stack)
+            .sheet(isPresented: $showAddView) {
+                AddView(showAddView: $showAddView)
+            }
         
         
     }
