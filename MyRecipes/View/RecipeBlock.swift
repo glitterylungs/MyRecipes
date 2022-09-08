@@ -20,7 +20,6 @@ struct RecipeBlock: View {
                 .frame(width: 170)
                 .clipped()
                 .overlay(ImageOverlay(), alignment: .bottom)
-
     }
         .cornerRadius(25)
     }
