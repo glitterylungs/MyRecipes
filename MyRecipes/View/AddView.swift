@@ -11,32 +11,40 @@ struct AddView: View {
     
     @Binding var showAddView: Bool
     @State private var isShowPhotoLibrary = false
+    @State private var photoButtonVisible = true
     @State private var image = UIImage()
     
     var body: some View {
         NavigationView {
             ScrollView {
-                ZStack {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 170)
-                        .clipped()
-                    //TEST
-                    Button(action: {
-                        self.isShowPhotoLibrary = true
-                    }) {
-                        HStack {
-                            Image(systemName: "photo")
-                                .font(.system(size: 20))
-                    
-                            Text("Photo library")
-                                .font(.headline)
-                        }}
-                }.sheet(isPresented: $isShowPhotoLibrary) {
-                    ImagePicker(selectedImage: $image, sourceType: .photoLibrary)
+                HStack {
+                    ZStack {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 170)
+                            .clipped()
+                        //TEST
+                        if photoButtonVisible {
+                            Button(action: {
+                                self.isShowPhotoLibrary = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "photo")
+                                        .font(.system(size: 20))
+                            
+                                    Text("Photo library")
+                                        .font(.headline)
+                                }}
+                        }
+                    }.sheet(isPresented: $isShowPhotoLibrary) {
+                        ImagePicker(selectedImage: $image, photoButtonVisible: $photoButtonVisible, sourceType: .photoLibrary)
+                    }
+                    Spacer()
+                    Text("testtest")
+                        .padding()
+                    //KONIEC TESTU
                 }
-                //KONIEC TESTU
             }
             .navigationTitle("Create Recipe")
             .toolbar {

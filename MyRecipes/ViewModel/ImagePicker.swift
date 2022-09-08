@@ -12,6 +12,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     // selectedImage variable is used to store the selected image
     @Binding var selectedImage: UIImage
+    @Binding var photoButtonVisible: Bool
     
     // presentationMode variable is used to dismiss the photo library
     @Environment(\.presentationMode) var presentationMode
@@ -53,6 +54,7 @@ final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigation
  
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             parent.selectedImage = image
+            parent.photoButtonVisible = false
         }
  
         parent.presentationMode.wrappedValue.dismiss()
