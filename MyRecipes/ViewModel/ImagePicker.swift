@@ -11,7 +11,7 @@ import SwiftUI
 struct ImagePicker: UIViewControllerRepresentable {
     
     // selectedImage variable is used to store the selected image
-    @Binding var selectedImage: UIImage
+    @Binding var selectedImage: UIImage?
     @Binding var photoButtonVisible: Bool
     
     // presentationMode variable is used to dismiss the photo library

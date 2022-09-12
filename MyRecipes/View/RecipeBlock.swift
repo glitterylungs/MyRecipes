@@ -17,7 +17,7 @@ struct RecipeBlock: View {
             Image("beza")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 170)
+                .frame(minWidth: 170)
                 .clipped()
                 .overlay(ImageOverlay(), alignment: .bottom)
     }

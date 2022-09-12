@@ -12,15 +12,16 @@ struct AddView: View {
     @Binding var showAddView: Bool
     @State private var isShowPhotoLibrary = false
     @State private var photoButtonVisible = true
-    @State private var image = UIImage()
+    @State private var image = UIImage(named: "addImage")
     
     var body: some View {
         NavigationView {
             ScrollView {
                 HStack {
                     ZStack {
-                        Image(uiImage: image)
+                        Image(uiImage: image ?? UIImage())
                             .resizable()
+                            .padding()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 170)
                             .clipped()
@@ -29,13 +30,12 @@ struct AddView: View {
                             Button(action: {
                                 self.isShowPhotoLibrary = true
                             }) {
-                                HStack {
-                                    Image(systemName: "photo")
-                                        .font(.system(size: 20))
-                            
-                                    Text("Photo library")
-                                        .font(.headline)
-                                }}
+                                Text("Add image")
+                                    .font(.headline)
+                                    .offset(y: 55)
+                                    .padding(.vertical, 55)
+                                    .foregroundColor(Color("textColor"))
+                                }
                         }
                     }.sheet(isPresented: $isShowPhotoLibrary) {
                         ImagePicker(selectedImage: $image, photoButtonVisible: $photoButtonVisible, sourceType: .photoLibrary)
@@ -64,5 +64,6 @@ struct AddView: View {
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         AddView(showAddView: .constant(true))
+            .previewInterfaceOrientation(.portrait)
     }
 }

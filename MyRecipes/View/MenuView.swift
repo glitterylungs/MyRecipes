@@ -35,7 +35,7 @@ struct MenuView: View {
                 Button {
                     viewModel.showAddView.toggle()
                 } label: {
-                    Image(systemName: "plus").foregroundColor(.black)
+                    Image(systemName: "plus").foregroundColor(Color("textColor"))
                 }
 
             })
@@ -61,5 +61,6 @@ struct MenuView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }

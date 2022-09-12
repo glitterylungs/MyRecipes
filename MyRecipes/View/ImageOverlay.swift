@@ -15,7 +15,7 @@ struct ImageOverlay: View {
                 .font(.callout)
                 .padding(6)
                 .foregroundColor(.white)
-                .frame(width: 170)
+                .frame(maxWidth: .infinity)
         }
         .background(Color.black)
         .opacity(0.8)
