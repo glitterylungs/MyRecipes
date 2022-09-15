@@ -11,7 +11,7 @@ struct AddView: View {
     
     @Binding var showAddView: Bool
     @State private var isShowPhotoLibrary = false
-    @State private var photoButtonVisible = true
+    @State private var addImageButtonVisible = true
     @State private var image = UIImage(named: "addImage")
     
     var body: some View {
@@ -21,24 +21,25 @@ struct AddView: View {
                     ZStack {
                         Image(uiImage: image ?? UIImage())
                             .resizable()
+                            .cornerRadius(8)
                             .padding()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 170)
                             .clipped()
                         //TEST
-                        if photoButtonVisible {
+                        if addImageButtonVisible {
                             Button(action: {
                                 self.isShowPhotoLibrary = true
                             }) {
                                 Text("Add image")
+                                    .frame(width: 170, height: 170)
                                     .font(.headline)
-                                    .offset(y: 55)
-                                    .padding(.vertical, 55)
+                                    .offset(y: 47)
                                     .foregroundColor(Color("textColor"))
                                 }
                         }
                     }.sheet(isPresented: $isShowPhotoLibrary) {
-                        ImagePicker(selectedImage: $image, photoButtonVisible: $photoButtonVisible, sourceType: .photoLibrary)
+                        ImagePicker(selectedImage: $image, photoButtonVisible: $addImageButtonVisible, sourceType: .photoLibrary)
                     }
                     Spacer()
                     Text("testtest")
