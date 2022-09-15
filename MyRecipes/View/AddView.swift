@@ -41,10 +41,16 @@ struct AddView: View {
                     }.sheet(isPresented: $isShowPhotoLibrary) {
                         ImagePicker(selectedImage: $image, photoButtonVisible: $addImageButtonVisible, sourceType: .photoLibrary)
                     }
-                    Spacer()
-                    Text("testtest")
-                        .padding()
-                    //KONIEC TESTU
+                    VStack {
+                        TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                        TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                        TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                    }.padding(.trailing)
+                        .padding(.top, 30)
+
                 }
             }
             .navigationTitle("Create Recipe")

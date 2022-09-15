@@ -15,5 +15,5 @@ class Recipe: Object, Identifiable {
     @Persisted var time: Int
     @Persisted var servings: Int
     @Persisted var ingredients: List<String>
-    @Persisted var directions: String
+    @Persisted var directions: List<String>
 }
