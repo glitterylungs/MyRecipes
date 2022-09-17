@@ -10,9 +10,19 @@ import SwiftUI
 struct AddView: View {
     
     @Binding var showAddView: Bool
-    @State private var isShowPhotoLibrary = false
-    @State private var addImageButtonVisible = true
-    @State private var image = UIImage(named: "addImage")
+    @State private var isShowPhotoLibrary: Bool = false
+    @State private var addImageButtonVisible: Bool = true
+    @State private var image: UIImage? = UIImage(named: "addImage")
+    @State private var name: String = ""
+    @State private var time: Int = 0
+    @State private var servings: Int = 0
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.zeroSymbol = ""
+        return formatter
+    }()
     
     var body: some View {
         NavigationView {
@@ -42,11 +52,16 @@ struct AddView: View {
                         ImagePicker(selectedImage: $image, photoButtonVisible: $addImageButtonVisible, sourceType: .photoLibrary)
                     }
                     VStack {
-                        TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        TextField("Name", text: $name)
+                            .textFieldStyle(CustomTextFieldStyle())
                         Spacer()
-                        TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        TextField("Minutes", value: $time, formatter: numberFormatter)
+                            .textFieldStyle(CustomTextFieldStyle())
+                            .keyboardType(.decimalPad)
                         Spacer()
-                        TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        TextField("Servings", value: $servings, formatter: numberFormatter)
+                            .textFieldStyle(CustomTextFieldStyle())
+                            .keyboardType(.decimalPad)
                         Spacer()
                     }.padding(.trailing)
                         .padding(.top, 30)
@@ -65,6 +80,7 @@ struct AddView: View {
                 }
             }
         }.navigationViewStyle(.stack)
+            .interactiveDismissDisabled()
     }
 }
 
