@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-struct DynamicListView: View {
+struct IngredientsListView: View {
+    @StateObject private var viewModel = IngredientListViewModel()
     var body: some View {
         VStack {
             List {
-                IngredientRow(title: "lalal")
+                ForEach( viewModel.ingredients) { ingredient in
+                    IngredientRow(title: ingredient.name)
+                }
             }
         }
     }
@@ -31,6 +34,6 @@ struct IngredientRow: View {
 
 struct DynamicListView_Previews: PreviewProvider {
     static var previews: some View {
-        DynamicListView()
+        IngredientsListView()
     }
 }
