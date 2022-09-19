@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeBlock: View {
+struct RecipeBlockView: View {
     
     var body: some View {
         ZStack {
@@ -27,7 +27,7 @@ struct RecipeBlock: View {
 
 struct RecipeBlock_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeBlock()
+        RecipeBlockView()
     }
 }
 

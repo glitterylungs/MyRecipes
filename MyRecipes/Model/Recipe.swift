@@ -8,12 +8,12 @@
 import Foundation
 import RealmSwift
 
-class Recipe: Object, Identifiable {
+class Recipe: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
-    @Persisted var name: String
+    @Persisted var title: String
     @Persisted var image: String
     @Persisted var time: Int
     @Persisted var servings: Int
-    @Persisted var ingredients: List<String>
-    @Persisted var directions: List<String>
+    @Persisted var ingredients: List<Ingredient>
+    @Persisted var directions: List<Direction>
 }

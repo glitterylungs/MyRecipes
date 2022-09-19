@@ -25,7 +25,7 @@ struct MenuView: View {
             ScrollView {
                 LazyVGrid(columns: adaptiveColumns, spacing: 20) {
                     ForEach(data, id: \.self) { number in
-                        RecipeBlock()
+                        RecipeBlockView()
                     }
                 }
             }
