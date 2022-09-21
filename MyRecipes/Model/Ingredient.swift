@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Ingredient: Object, Identifiable {
+class Ingredient: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String
 }

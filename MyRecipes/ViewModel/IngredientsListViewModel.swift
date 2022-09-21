@@ -9,9 +9,7 @@ import Foundation
 
 extension IngredientsListView {
     @MainActor class IngredientListViewModel: ObservableObject {
-        @Published var ingredients: [Ingredient] = [
-        
-        ]
+        @Published var ingredients = [PreIngredient]()
     
     }
     

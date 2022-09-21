@@ -67,6 +67,7 @@ struct AddView: View {
                         .padding(.top, 30)
 
                 }
+                IngredientsListView()
             }
             .navigationTitle("Create Recipe")
             .toolbar {
@@ -83,6 +84,7 @@ struct AddView: View {
             .interactiveDismissDisabled()
     }
 }
+
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
