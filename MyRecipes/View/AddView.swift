@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddView: View {
     
+    @StateObject var ingredientsList = IngredientsList()
+    
     @Binding var showAddView: Bool
     @State private var isShowPhotoLibrary: Bool = false
     @State private var addImageButtonVisible: Bool = true
@@ -67,7 +69,7 @@ struct AddView: View {
                         .padding(.top, 30)
 
                 }
-                IngredientsListView()
+                IngredientsListView().environmentObject(ingredientsList)
             }
             .navigationTitle("Create Recipe")
             .toolbar {
@@ -90,5 +92,6 @@ struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         AddView(showAddView: .constant(true))
             .previewInterfaceOrientation(.portrait)
+            
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 
 struct PreIngredient: Identifiable {
     var id = UUID()
-    let name: String
+    var name: String
 }
