@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+struct PreIngredient: Identifiable {
+    var id = UUID()
+    var name: String
+}
+
+
 struct AddView: View {
     
-    @StateObject var ingredientsList = IngredientsList()
+    @Environment(\.defaultMinListRowHeight) var minRowHeight
+    @StateObject private var viewModel = AddViewModel()
     
     @Binding var showAddView: Bool
     @State private var isShowPhotoLibrary: Bool = false
@@ -18,6 +25,7 @@ struct AddView: View {
     @State private var name: String = ""
     @State private var time: Int = 0
     @State private var servings: Int = 0
+    
     
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -28,62 +36,92 @@ struct AddView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                HStack {
-                    ZStack {
-                        Image(uiImage: image ?? UIImage())
-                            .resizable()
-                            .cornerRadius(8)
-                            .padding()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 170)
-                            .clipped()
-                        //TEST
-                        if addImageButtonVisible {
-                            Button(action: {
-                                self.isShowPhotoLibrary = true
-                            }) {
-                                Text("Add image")
-                                    .frame(width: 170, height: 170)
-                                    .font(.headline)
-                                    .offset(y: 47)
-                                    .foregroundColor(Color("textColor"))
+            GeometryReader { geo in
+                ScrollView {
+                    HStack {
+                        ZStack {
+                            Image(uiImage: image ?? UIImage())
+                                .resizable()
+                                .cornerRadius(8)
+                                .padding()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 170)
+                                .clipped()
+                            //TEST
+                            if addImageButtonVisible {
+                                Button(action: {
+                                    self.isShowPhotoLibrary = true
+                                }) {
+                                    Text("Add image")
+                                        .frame(width: 170, height: 170)
+                                        .font(.headline)
+                                        .offset(y: 47)
+                                        .foregroundColor(Color("textColor"))
                                 }
+                            }
+                        }.sheet(isPresented: $isShowPhotoLibrary) {
+                            ImagePicker(selectedImage: $image, photoButtonVisible: $addImageButtonVisible, sourceType: .photoLibrary)
                         }
-                    }.sheet(isPresented: $isShowPhotoLibrary) {
-                        ImagePicker(selectedImage: $image, photoButtonVisible: $addImageButtonVisible, sourceType: .photoLibrary)
+                        VStack {
+                            TextField("Title", text: $name)
+                                .textFieldStyle(CustomTextFieldView())
+                            Spacer()
+                            TextField("Minutes", value: $time, formatter: numberFormatter)
+                                .textFieldStyle(CustomTextFieldView())
+                                .keyboardType(.decimalPad)
+                            Spacer()
+                            TextField("Servings", value: $servings, formatter: numberFormatter)
+                                .textFieldStyle(CustomTextFieldView())
+                                .keyboardType(.decimalPad)
+                            Spacer()
+                        }.padding(.trailing)
+                            .padding(.top, 30)
+                        
                     }
                     VStack {
-                        TextField("Title", text: $name)
-                            .textFieldStyle(CustomTextFieldView())
-                        Spacer()
-                        TextField("Minutes", value: $time, formatter: numberFormatter)
-                            .textFieldStyle(CustomTextFieldView())
-                            .keyboardType(.decimalPad)
-                        Spacer()
-                        TextField("Servings", value: $servings, formatter: numberFormatter)
-                            .textFieldStyle(CustomTextFieldView())
-                            .keyboardType(.decimalPad)
-                        Spacer()
-                    }.padding(.trailing)
-                        .padding(.top, 30)
-
-                }
-                IngredientsListView().environmentObject(ingredientsList)
-            }
-            .navigationTitle("Create Recipe")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        showAddView = false
-                    } label: {
-                        Image(systemName: "xmark").foregroundColor(.black)
+                        TextField("Ingredient", text: $viewModel.ingredientTextField)
+                            .textFieldStyle(CustomTextFieldView()).padding()
+                        Button {
+                            viewModel.tryToAddIngredient()
+                        } label: {
+                            Text("Add")
+                        }
+                        List {
+                            ForEach(viewModel.ingredients) { ingredient in
+                                ListRow(text: ingredient.name)
+                                let _ = print("show")
+                            }
+                        }.frame(minHeight: minRowHeight * CGFloat(viewModel.ingredients.count))
+                            .listStyle(.plain)
+                        
                     }
-
+                }
+                .navigationTitle("Create Recipe")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            showAddView = false
+                        } label: {
+                            Image(systemName: "xmark").foregroundColor(.black)
+                        }
+                        
+                    }
                 }
             }
-        }.navigationViewStyle(.stack)
+            .navigationViewStyle(.stack)
             .interactiveDismissDisabled()
+        }
+    }
+}
+
+struct ListRow: View {
+    let text: String
+    
+    var body: some View {
+        
+        Text(text)
+            .foregroundColor(.black)
+
     }
 }
 
