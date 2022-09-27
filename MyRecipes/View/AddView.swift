@@ -9,7 +9,12 @@ import SwiftUI
 
 struct PreIngredient: Identifiable {
     var id = UUID()
-    var name: String
+    var content: String
+}
+
+struct PreDirection: Identifiable {
+    var id = UUID()
+    var content: String
 }
 
 
@@ -36,7 +41,6 @@ struct AddView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geo in
                 ScrollView {
                     HStack {
                         ZStack {
@@ -88,8 +92,23 @@ struct AddView: View {
                         }
                         List {
                             ForEach(viewModel.ingredients) { ingredient in
-                                ListRow(text: ingredient.name)
-                                let _ = print("show")
+                                ListRow(text: ingredient.content, image: "cart")
+                            }
+                        }.frame(minHeight: minRowHeight * CGFloat(viewModel.ingredients.count))
+                            .listStyle(.plain)
+                        
+                    }
+                    VStack {
+                        TextField("Direction", text: $viewModel.directionTextField)
+                            .textFieldStyle(CustomTextFieldView()).padding()
+                        Button {
+                            viewModel.tryToAddDirection()
+                        } label: {
+                            Text("Add")
+                        }
+                        List {
+                            ForEach(viewModel.directions) { direction in
+                                ListRow(text: direction.content, image: "fork.knife")
                             }
                         }.frame(minHeight: minRowHeight * CGFloat(viewModel.ingredients.count))
                             .listStyle(.plain)
@@ -107,7 +126,7 @@ struct AddView: View {
                         
                     }
                 }
-            }
+            
             .navigationViewStyle(.stack)
             .interactiveDismissDisabled()
         }
@@ -116,11 +135,16 @@ struct AddView: View {
 
 struct ListRow: View {
     let text: String
+    let image: String
     
     var body: some View {
         
-        Text(text)
-            .foregroundColor(.black)
+        Label {
+            Text(text)
+        } icon: {
+            Image(systemName: image)
+        }
+
 
     }
 }

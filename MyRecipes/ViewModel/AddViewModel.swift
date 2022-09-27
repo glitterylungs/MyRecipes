@@ -9,18 +9,27 @@ import Foundation
 
 extension AddView {
     @MainActor class AddViewModel: ObservableObject {
-        @Published var ingredients: [PreIngredient] = [PreIngredient(name: "fasgv"), PreIngredient(name: "sbsbgfs")]
+        @Published var ingredients = [PreIngredient]()
+        @Published var directions = [PreDirection]()
         @Published var ingredientTextField: String = ""
+        @Published var directionTextField: String = ""
         
         func tryToAddIngredient() {
             guard !ingredientTextField.trimmingCharacters(in: .whitespaces).isEmpty else {
                 return
             }
-            let newIngredient = PreIngredient(name: ingredientTextField)
+            let newIngredient = PreIngredient(content: ingredientTextField)
             ingredients.append(newIngredient)
             ingredientTextField = ""
-            print("add")
-            print(ingredients)
+        }
+        
+        func tryToAddDirection() {
+            guard !directionTextField.trimmingCharacters(in: .whitespaces).isEmpty else {
+                return
+            }
+            let newDirection = PreDirection(content: directionTextField)
+            directions.append(newDirection)
+            directionTextField = ""
         }
     }
 }
