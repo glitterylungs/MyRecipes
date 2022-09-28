@@ -19,7 +19,7 @@ SwiftUI, MVVM, Realm are used in this project.
 # TO DO
 
 * Searching recipes
-* Add Recipe View
+* Saving recipe
 * Recipe View
 * CRUD with Realm
 * Deleting recipe
