@@ -48,7 +48,7 @@ struct AddView: View {
                                 .resizable()
                                 .cornerRadius(8)
                                 .padding()
-                                .aspectRatio(contentMode: .fill)
+                                .aspectRatio(contentMode: .fit)
                                 .frame(width: 170)
                                 .clipped()
                             //TEST
@@ -82,38 +82,54 @@ struct AddView: View {
                             .padding(.top, 30)
                         
                     }
+                    
                     VStack {
                         TextField("Ingredient", text: $viewModel.ingredientTextField)
                             .textFieldStyle(CustomTextFieldView()).padding()
                         Button {
                             viewModel.tryToAddIngredient()
                         } label: {
-                            Text("Add")
-                        }
+                            Label("Add ingredient", systemImage: "plus")
+                        }.customButton()
                         List {
                             ForEach(viewModel.ingredients) { ingredient in
-                                ListRow(text: ingredient.content, image: "cart")
+                                Label {
+                                    Text(ingredient.content)
+                                } icon: {
+                                    Image(systemName: "cart")
+                                        .foregroundColor(Color("green"))
+                                }
                             }
                         }.frame(minHeight: minRowHeight * CGFloat(viewModel.ingredients.count))
-                            .listStyle(.plain)
-                        
-                    }
+                            .listStyle(.inset)
+                    }.padding(.top, 30)
+                    
                     VStack {
                         TextField("Direction", text: $viewModel.directionTextField)
                             .textFieldStyle(CustomTextFieldView()).padding()
                         Button {
                             viewModel.tryToAddDirection()
                         } label: {
-                            Text("Add")
-                        }
+                            Label("Add direction", systemImage: "plus")
+                        }.customButton()
                         List {
                             ForEach(viewModel.directions) { direction in
-                                ListRow(text: direction.content, image: "fork.knife")
+                                Label {
+                                    Text(direction.content)
+                                } icon: {
+                                    Image(systemName: "fork.knife")
+                                        .foregroundColor(Color("green"))
+                                }
                             }
-                        }.frame(minHeight: minRowHeight * CGFloat(viewModel.ingredients.count))
-                            .listStyle(.plain)
-                        
-                    }
+                        }.frame(minHeight: minRowHeight * CGFloat(viewModel.directions.count))
+                            .listStyle(.inset)
+                    }.padding(.top, 30)
+                    Button {
+                      //  <#code#>
+                    } label: {
+                        Label("Save", systemImage: "plus.square")
+                    }.customButton()
+                    .padding(.top, 50)
                 }
                 .navigationTitle("Create Recipe")
                 .toolbar {
@@ -130,22 +146,6 @@ struct AddView: View {
             .navigationViewStyle(.stack)
             .interactiveDismissDisabled()
         }
-    }
-}
-
-struct ListRow: View {
-    let text: String
-    let image: String
-    
-    var body: some View {
-        
-        Label {
-            Text(text)
-        } icon: {
-            Image(systemName: image)
-        }
-
-
     }
 }
 
