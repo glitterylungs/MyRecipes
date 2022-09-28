@@ -7,44 +7,20 @@
 
 import SwiftUI
 
-struct PreIngredient: Identifiable {
-    var id = UUID()
-    var content: String
-}
-
-struct PreDirection: Identifiable {
-    var id = UUID()
-    var content: String
-}
-
-
 struct AddView: View {
     
     @Environment(\.defaultMinListRowHeight) var minRowHeight
+    
     @StateObject private var viewModel = AddViewModel()
     
     @Binding var showAddView: Bool
-    @State private var isShowPhotoLibrary: Bool = false
-    @State private var addImageButtonVisible: Bool = true
-    @State private var image: UIImage? = UIImage(named: "addImage")
-    @State private var name: String = ""
-    @State private var time: Int = 0
-    @State private var servings: Int = 0
-    
-    
-    private let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.zeroSymbol = ""
-        return formatter
-    }()
     
     var body: some View {
         NavigationView {
                 ScrollView {
                     HStack {
                         ZStack {
-                            Image(uiImage: image ?? UIImage())
+                            Image(uiImage: viewModel.image ?? UIImage())
                                 .resizable()
                                 .cornerRadius(8)
                                 .padding()
@@ -52,9 +28,9 @@ struct AddView: View {
                                 .frame(width: 170)
                                 .clipped()
                             //TEST
-                            if addImageButtonVisible {
+                            if viewModel.addImageButtonVisible {
                                 Button(action: {
-                                    self.isShowPhotoLibrary = true
+                                    viewModel.isShowPhotoLibrary = true
                                 }) {
                                     Text("Add image")
                                         .frame(width: 170, height: 170)
@@ -63,18 +39,18 @@ struct AddView: View {
                                         .foregroundColor(Color("textColor"))
                                 }
                             }
-                        }.sheet(isPresented: $isShowPhotoLibrary) {
-                            ImagePicker(selectedImage: $image, photoButtonVisible: $addImageButtonVisible, sourceType: .photoLibrary)
+                        }.sheet(isPresented: $viewModel.isShowPhotoLibrary) {
+                            ImagePicker(selectedImage: $viewModel.image, photoButtonVisible: $viewModel.addImageButtonVisible, sourceType: .photoLibrary)
                         }
                         VStack {
-                            TextField("Title", text: $name)
+                            TextField("Title", text: $viewModel.name)
                                 .textFieldStyle(CustomTextFieldView())
                             Spacer()
-                            TextField("Minutes", value: $time, formatter: numberFormatter)
+                            TextField("Minutes", value: $viewModel.time, formatter: viewModel.numberFormatter)
                                 .textFieldStyle(CustomTextFieldView())
                                 .keyboardType(.decimalPad)
                             Spacer()
-                            TextField("Servings", value: $servings, formatter: numberFormatter)
+                            TextField("Servings", value: $viewModel.servings, formatter: viewModel.numberFormatter)
                                 .textFieldStyle(CustomTextFieldView())
                                 .keyboardType(.decimalPad)
                             Spacer()

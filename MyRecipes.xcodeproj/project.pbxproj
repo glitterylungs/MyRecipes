@@ -15,6 +15,7 @@
 		4F73EB5228D651000067BA64 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F73EB5128D651000067BA64 /* CustomTextFieldView.swift */; };
 		4F75230828B84E0100C255AB /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75230728B84E0100C255AB /* Recipe.swift */; };
 		4F7E6C3F28E4D74D00CF370F /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E6C3E28E4D74D00CF370F /* extensions.swift */; };
+		4F7E6C4128E4F30300CF370F /* PreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E6C4028E4F30300CF370F /* PreData.swift */; };
 		4FA0167B28CA905800FE1FCA /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0167A28CA905800FE1FCA /* MenuViewModel.swift */; };
 		4FA0167D28CA928300FE1FCA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0167C28CA928300FE1FCA /* ImagePicker.swift */; };
 		4FA5832D28DBDBDF00598469 /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5832C28DBDBDF00598469 /* AddViewModel.swift */; };
@@ -34,6 +35,7 @@
 		4F73EB5128D651000067BA64 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		4F75230728B84E0100C255AB /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		4F7E6C3E28E4D74D00CF370F /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		4F7E6C4028E4F30300CF370F /* PreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreData.swift; sourceTree = "<group>"; };
 		4FA0167A28CA905800FE1FCA /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		4FA0167C28CA928300FE1FCA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4FA5832C28DBDBDF00598469 /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				4FC1CA6E28B6C9B9006C4566 /* Assets.xcassets */,
 				4FC1CA7028B6C9B9006C4566 /* Preview Content */,
 				4F7E6C3E28E4D74D00CF370F /* extensions.swift */,
+				4F7E6C4028E4F30300CF370F /* PreData.swift */,
 			);
 			path = MyRecipes;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FDDE8D728C902A5001FB29A /* AddView.swift in Sources */,
+				4F7E6C4128E4F30300CF370F /* PreData.swift in Sources */,
 				4FA0167B28CA905800FE1FCA /* MenuViewModel.swift in Sources */,
 				4FA5832D28DBDBDF00598469 /* AddViewModel.swift in Sources */,
 				4FC1CA6D28B6C9B8006C4566 /* MenuView.swift in Sources */,
