@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct AddView: View {
     
     @Environment(\.defaultMinListRowHeight) var minRowHeight
+    
+    @ObservedResults(Recipe.self) var recipesList
     
     @StateObject private var viewModel = AddViewModel()
     
@@ -24,7 +27,7 @@ struct AddView: View {
                                 .resizable()
                                 .cornerRadius(8)
                                 .padding()
-                                .aspectRatio(contentMode: .fit)
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: 170)
                                 .clipped()
                             //TEST
@@ -101,7 +104,29 @@ struct AddView: View {
                             .listStyle(.inset)
                     }.padding(.top, 30)
                     Button {
-                      //  <#code#>
+                        // TODO: Przenieść do view model, zabiezpieczyć przed errorami, zapisywać obrazek jak wszystko jest ok
+                        let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
+                        let recipe = Recipe()
+                        viewModel.saveImageLocally(image: viewModel.image ?? UIImage(), fileName: String(recipe.id))
+                        recipe.title = viewModel.name
+                        recipe.image = String(recipe.id)
+                        recipe.time = viewModel.time
+                        recipe.servings = viewModel.servings
+                        
+                        viewModel.ingredients.forEach { preIngredient in
+                            let newIngredient = Ingredient()
+                            newIngredient.name = preIngredient.content
+                            recipe.ingredients.append(newIngredient)
+                        }
+                        
+                        viewModel.directions.forEach { preDirection in
+                            let newDirection = Direction()
+                            newDirection.step = preDirection.content
+                            recipe.directions.append(newDirection)
+                        }
+                        
+                        $recipesList.append(recipe)
+                        showAddView = false
                     } label: {
                         Label("Save", systemImage: "plus.square")
                     }.customButton()

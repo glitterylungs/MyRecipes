@@ -47,5 +47,23 @@ extension AddView {
             directions.append(newDirection)
             directionTextField = ""
         }
+        
+        
+        func saveImageLocally(image: UIImage, fileName: String) {
+            
+         // Obtaining the Location of the Documents Directory
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            
+            // Creating a URL to the name of your file
+            let url = documentsDirectory.appendingPathComponent(fileName)
+            
+            if let data = image.pngData() {
+                do {
+                    try data.write(to: url) // Writing an Image in the Documents Directory
+                } catch {
+                    print("Unable to Write \(fileName) Image Data to Disk")
+                }
+            }
+        }
     }
 }
